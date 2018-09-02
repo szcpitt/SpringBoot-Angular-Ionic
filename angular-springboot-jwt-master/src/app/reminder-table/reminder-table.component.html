@@ -1,0 +1,36 @@
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort matSortActive="created" matSortDisableClear matSortDirection="asc" class="mat-elevation-z8">
+        <!-- Patient ID Column -->
+        <ng-container matColumnDef="patientId">
+            <mat-header-cell *matHeaderCellDef> Patient ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.patientId}} </mat-cell>
+        </ng-container>
+
+        <!-- Patient Name Column -->
+        <ng-container matColumnDef="patientName">
+            <mat-header-cell *matHeaderCellDef> Patient Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.patientName}} </mat-cell>
+        </ng-container>
+    
+        <!-- Hign Reminder Count Column -->
+        <ng-container matColumnDef="highCount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true"> High Reminder Count </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.highCount}} </mat-cell>
+        </ng-container>
+    
+        <!-- Middle Reminder Count Column -->
+        <ng-container matColumnDef="midCount">
+            <mat-header-cell *matHeaderCellDef> Middle Reminder Count </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.midCount}} </mat-cell>
+        </ng-container>
+    
+        <!-- Low Reminder Count Column -->
+        <ng-container matColumnDef="lowCount">
+            <mat-header-cell *matHeaderCellDef> Low Reminder Count </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.lowCount}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></mat-row>
+    </mat-table>
+</div>  

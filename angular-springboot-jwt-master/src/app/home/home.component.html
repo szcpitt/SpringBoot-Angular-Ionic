@@ -1,0 +1,16 @@
+<mat-toolbar>
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+        <li routerLinkActive="active"><a routerLink="/history">History</a></li>
+        <li routerLinkActive="active"><a routerLink="/add_reminder">Add Reminder</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn navbar-btn" (click)="logout()">Logout</button></li>
+        </ul>
+    </div>
+</mat-toolbar>
+<br><br>
+<div class='container' id='updateDOM'></div>
+<app-reminder-table></app-reminder-table>

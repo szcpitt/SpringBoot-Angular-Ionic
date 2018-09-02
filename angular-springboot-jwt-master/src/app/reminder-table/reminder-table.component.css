@@ -1,0 +1,11 @@
+table {
+    width: 100%;
+}
+
+.mat-row:hover {
+    background-color: silver;
+}
+
+.mat-sort-header-sorted {
+    color: black;
+}

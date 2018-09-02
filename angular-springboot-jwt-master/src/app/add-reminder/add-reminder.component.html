@@ -1,0 +1,126 @@
+<mat-toolbar>
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+        <li routerLinkActive="active"><a routerLink="/history">History</a></li>
+        <li routerLinkActive="active"><a routerLink="/add_reminder">Add Reminder</a></li>
+      </ul>
+  
+      <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn navbar-btn" (click)="logout()">Logout</button></li>
+      </ul>
+    </div>
+</mat-toolbar>
+<!-- <div class="example-container">
+    <h3>New Reminder</h3><br>
+
+    <mat-form-field>
+      <input matInput placeholder="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="description"></textarea>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="time" name="time" [(ngModel)]="model.time" #time="ngModel"
+          required/>
+        <div *ngIf="f.submitted && !time.valid" class="help-block">Time is required</div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Select">
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+</div> -->
+
+<div class='container' id='updateDOM'></div>
+
+<script>
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  if(dd<10){
+          dd='0'+dd
+      } 
+      if(mm<10){
+          mm='0'+mm
+      } 
+
+  today = yyyy+'-'+mm+'-'+dd;
+  document.getElementById("datefield").setAttribute("min", today);
+</script>
+
+<div class="container">
+  <h3>New Reminder</h3><br>
+  <div class="form-wrapper">
+    <form name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
+      
+      <p>Reminder Name</p>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+        <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel"
+              required placeholder="Name"/>
+        <div *ngIf="f.submitted && !name.valid" class="help-block">Reminder name is required</div>
+      </div>
+
+      <p>Description</p>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+        <input type="text" class="form-control" name="description" [(ngModel)]="model.description" #description="ngModel"
+              required placeholder="Description"/>
+        <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
+      </div>
+
+      <p>How soon should a patient finish this task?</p>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !hours.valid }">
+          <input type="number" class="form-control" name="hours" [(ngModel)]="model.hours" #patientId="ngModel"
+                required placeholder="Hours"/>
+          <div *ngIf="f.submitted && !hours.valid" class="help-block">Hours are required</div>
+      </div>
+
+      <!-- <p>Remind Date</p>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !date.valid }">
+        <input id="datefield" min="2018-8-26" type="date" class="form-control" name="date" [(ngModel)]="model.date" 
+          #date="ngModel" placeholder="yyyy-MM-dd" required/>
+        <div *ngIf="f.submitted && !date.valid" class="help-block">Date is required</div>
+      </div>
+
+      <p>Remind Time</p>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !time.valid }">
+        <input type="time" class="form-control" name="time" [(ngModel)]="model.time" #time="ngModel"
+              required/>
+        <div *ngIf="f.submitted && !time.valid" class="help-block">Time is required</div>
+      </div> -->
+
+      <p>Remind Level</p>
+      <div class="form-group">
+        <input type="radio" name="levelHigh" [(ngModel)]="model.level" value="high" checked="checked"/>
+        <label>High</label><br>
+        <input type="radio" name="levelMiddle" [(ngModel)]="model.level" value="middle"/>
+        <label>Middle</label><br>
+        <input type="radio" name="levelLow" [(ngModel)]="model.level" value="low"/>
+        <label>Low</label><br>
+      </div>
+
+      <p>Patient ID</p>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !patientId.valid }">
+          <input type="number" class="form-control" name="patientId" [(ngModel)]="model.patientId" #patientId="ngModel"
+                required placeholder="patientId"/>
+          <div *ngIf="f.submitted && !patientId.valid" class="help-block">Patient ID name is required</div>
+      </div>
+
+      <div class="form-group" >
+        <button [disabled]="loading" class="btn btn-primary">Add</button>
+      </div>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </form>
+  </div>
+</div>
+

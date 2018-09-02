@@ -1,0 +1,41 @@
+<mat-toolbar>
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+        <li routerLinkActive="active"><a routerLink="/history">History</a></li>
+        <li routerLinkActive="active"><a routerLink="/add_reminder">Add Reminder</a></li>
+        </ul>
+    
+        <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn navbar-btn" (click)="logout()">Logout</button></li>
+        </ul>
+    </div>
+</mat-toolbar><br><br>
+
+
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+        <!-- Patient Name Column -->
+        <ng-container matColumnDef="patientName">
+            <mat-header-cell *matHeaderCellDef> Patient Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.patientName}} </mat-cell>
+        </ng-container>
+
+        <!-- Patient Name Column -->
+        <ng-container matColumnDef="day">
+            <mat-header-cell *matHeaderCellDef> Days Before a Week </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.day}} </mat-cell>
+        </ng-container>
+    
+        <!-- Expired Reminder Count Column -->
+        <ng-container matColumnDef="expiredCount">
+            <mat-header-cell *matHeaderCellDef> Expired Reminder Count </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.expiredCount}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>
+
